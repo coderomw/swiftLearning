@@ -54,8 +54,9 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
         transition.bubbleColor = btn.backgroundColor!
         transition.animationBlock = {(transitionMode) -> Void in
             if transitionMode == .present {
-                let taegetVC = presented as! ViewController2
-                taegetVC.dismissBtn.frame.origin.y = self.view.frame.height - 150
+                if let targetVC = presented as? ViewController2 {
+                    targetVC.dismissBtn.frame.origin.y = self.view.frame.height - 150
+                }
             }
         }
         transition.duration = 0.4
@@ -68,8 +69,10 @@ class ViewController: UIViewController, UIViewControllerTransitioningDelegate {
         transition.bubbleColor = btn.backgroundColor!
         transition.animationBlock = {(transitionMode) -> Void in
             if transitionMode == .dismiss {
-                let dismissedVC = dismissed as! ViewController2
-                dismissedVC.dismissBtn.frame.origin.y = self.view.frame.height - 250
+                if let dismissedVC = dismissed as? ViewController2 {
+                    dismissedVC.dismissBtn.frame.origin.y = self.view.frame.height - 250
+
+                }
             }
         }
         transition.duration = 0.4

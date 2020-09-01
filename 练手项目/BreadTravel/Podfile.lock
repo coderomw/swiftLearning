@@ -1,0 +1,38 @@
+PODS:
+  - Alamofire (5.2.2)
+  - KakaJSON (1.1.2)
+  - Kingfisher (5.15.0):
+    - Kingfisher/Core (= 5.15.0)
+  - Kingfisher/Core (5.15.0)
+  - MJRefresh (3.5.0)
+  - SnapKit (5.0.1)
+  - SwiftyJSON (5.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - KakaJSON
+  - Kingfisher
+  - MJRefresh
+  - SnapKit (~> 5.0.0)
+  - SwiftyJSON
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - KakaJSON
+    - Kingfisher
+    - MJRefresh
+    - SnapKit
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  KakaJSON: cc5ff50a8c1cfbb09413db8496cb709a209e6137
+  Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+
+PODFILE CHECKSUM: b8e6b215bfc8fc3b1092ee3385264ac6880ceb76
+
+COCOAPODS: 1.9.3
