@@ -43,7 +43,6 @@ class HomeViewController: UIViewController {
         addBtnView.backgroundColor = UIColor.white
         addBtnView.layer.cornerRadius = 30
         addBtnView.clipsToBounds = true
-//        addBtnView.layer.ani
         let imagePath: String? = Bundle.main.path(forResource: "homepage_addButton_animated@2x", ofType: "gif")
         addBtnView.kf.setImage(with: ImageResource(downloadURL: URL(fileURLWithPath: imagePath!)))
         view.addSubview(addBtnView)
