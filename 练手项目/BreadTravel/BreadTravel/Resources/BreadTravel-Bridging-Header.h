@@ -9,4 +9,4 @@
 #import <Kingfisher/Kingfisher-Swift.h>
 #import <SwiftyJSON/SwiftyJSON-Swift.h>
 #import <MJRefresh.h>
-
+#import <SDCycleScrollView.h>

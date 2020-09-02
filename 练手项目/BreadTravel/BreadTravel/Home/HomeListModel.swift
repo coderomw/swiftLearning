@@ -13,7 +13,7 @@ struct HomeElementUser: Convertible {
     
 }
 
-struct HomeElementData: Convertible {
+struct HomeElementDataType4: Convertible {
     var cover_image: String = ""
     var cover_image_default: String = ""
     var first_day: String = ""
@@ -26,9 +26,26 @@ struct HomeElementData: Convertible {
     var user: HomeElementUser!
 }
 
+/*type为1*/
+
+struct HomeElementDataType1: Convertible {
+    var image_url: String = ""
+    var html_url: String = ""
+}
+
+//class HomeElementData<E>: NSArray,Convertible {
+//    var element: E
+//
+//    required override init() {
+//        super.init(array: [E])
+//    }
+//
+//}
+
+/*type为1*/
 struct HomeListItem: Convertible {
     var type: Int?
-    var data: [HomeElementData]? = nil
+    var data: Array<Any>?
 }
 
 

@@ -101,7 +101,7 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     
-    func setModel(_ model: HomeElementData) {
+    func setModel(_ model: HomeElementDataType4) {
         let url = URL(string: model.cover_image)
         coverImgView.kf.indicatorType = .activity
         coverImgView.kf.setImage(with: url)

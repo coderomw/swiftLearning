@@ -9,4 +9,5 @@ target 'BreadTravel' do
     pod 'Kingfisher'
     pod 'MJRefresh'
     pod 'KakaJSON'
+    pod 'SDCycleScrollView'
 end

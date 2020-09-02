@@ -15,10 +15,13 @@ struct homeParam: Encodable {
 
 
 class HomeViewController: UIViewController {
-    lazy var tableView = UITableView()
+    lazy var topScrollView = SDCycleScrollView()
+    var tableView: UITableView!
     var addBtnView: UIImageView!
     static let cellName = "homeCell"
-    var itemDatas = [HomeElementData]()
+    var itemDatas = [HomeElementDataType4]()
+    var topImageDatas = [String]()
+    
     var nextPage = 0
     var isHidden: Bool = false
     
@@ -26,6 +29,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView = UITableView(frame: CGRect.zero, style: .grouped)
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: loadNewData)
         tableView.mj_footer = MJRefreshAutoFooter(refreshingBlock: loadMoreData)
         tableView.register(HomeTableViewCell.self, forCellReuseIdentifier: Self.cellName)
@@ -33,7 +37,7 @@ class HomeViewController: UIViewController {
         tableView.delegate=self
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
-            make.edges.equalTo(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+            make.edges.equalTo(UIEdgeInsets.zero)
         }
         addBtnView = UIImageView.init()
         addBtnView.backgroundColor = UIColor.white
@@ -79,8 +83,18 @@ class HomeViewController: UIViewController {
                     self?.itemDatas.removeAll()
                 }
                 for listItem in elements ?? [] {
-                    guard let elementItem = listItem.data?.first else {continue}
-                    self?.itemDatas.append(elementItem)
+                    if listItem.type == 4 {
+                        guard let elementItem = listItem.data?.first as? Dictionary<String, Any> else {continue}
+                        guard let type4Model = elementItem.kj.model(type: HomeElementDataType4.self) as? HomeElementDataType4 else {continue}
+                        self?.itemDatas.append(type4Model)
+                    }else if listItem.type == 1 {
+                        guard let firstArr = listItem.data?.first as? Array<Any> else {continue}
+                        for type1Item in firstArr {
+                            let type1Dic = type1Item as? Dictionary<String, Any>
+                            guard  let type1Item = type1Dic?.kj.model(type: HomeElementDataType1.self) as? HomeElementDataType1 else {continue}
+                            self?.topImageDatas.append(type1Item.image_url)
+                        }
+                    }
                 }
                 self?.tableView.reloadData()
                 self?.nextPage = homeModel.data?.next_start as! Int
@@ -173,8 +187,20 @@ extension HomeViewController: UITableViewDelegate{
         200
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        section==0 ? 250 : 0
+    }
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         10
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            let scrollView = SDCycleScrollView.init(frame: CGRect.init(origin: CGPoint.zero, size: CGSize.init(width: UIScreen.main.bounds.size.width, height: 250)), imageURLStringsGroup: self.topImageDatas)
+            return scrollView
+        }
+        return nil
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
