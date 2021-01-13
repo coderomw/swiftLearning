@@ -33,15 +33,6 @@ struct HomeElementDataType1: Convertible {
     var html_url: String = ""
 }
 
-//class HomeElementData<E>: NSArray,Convertible {
-//    var element: E
-//
-//    required override init() {
-//        super.init(array: [E])
-//    }
-//
-//}
-
 /*type为1*/
 struct HomeListItem: Convertible {
     var type: Int?
